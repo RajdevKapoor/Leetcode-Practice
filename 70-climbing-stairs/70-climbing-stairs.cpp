@@ -2,10 +2,9 @@ class Solution {
 public:
     int climbStairs(int n) {
         
- int one = 1;
+        int one = 1;
         int two = 1;
         
-        // for(int i=0; i<n-1; i++) // top - down 
         for(int i = n-2; i>=0; i--) // Bottom-up
         {
             int temp = one;
