@@ -7,8 +7,10 @@ public:
         
         // for each coin traversing the possible amount arrays and using pre calculated sum.
         for(int coin:coins){
-            for(int i=coin;i<n+1;i++){
-                v[i]+=v[i-coin];
+            for(int i=1;i<n+1;i++){
+                if(i>=coin){
+                    v[i]+=v[i-coin];
+                }
             }
         }
         
