@@ -1,18 +1,22 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int sum=INT_MIN;
-        int ans=0;
+        int sum = 0;
+        int ans=INT_MIN;
         
-        for(auto x: nums){
-            ans+=x;
-            sum=max(sum,ans);
-            if(ans<0) {
-                ans=0;
+        //Kadanes
+        
+        for(int x:nums){
+            sum+=x;
+            ans=max(sum,ans);
+            if(sum<0){
+                sum=0;
             }
+            
             
         }
         
-        return sum;
+        return ans;
+    
     }
 };
