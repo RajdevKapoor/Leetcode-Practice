@@ -29,6 +29,8 @@ public:
         for(int i=0;i<n;i++){
             sub_vec.push_back(v[i]);
         }
+        
+        v.clear();
         return sub_vec;
          
     }
