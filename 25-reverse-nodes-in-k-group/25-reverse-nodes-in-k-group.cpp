@@ -51,10 +51,10 @@ public:
                 if(!th){
                     tt = curr;
                 }
-                // curr->next = NULL;
                 th = addFirst(th, curr);
-                len--;
                 curr = next;
+                len--;
+                
             }
             if(!oh){
                 oh = th;
