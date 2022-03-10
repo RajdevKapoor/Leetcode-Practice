@@ -11,14 +11,9 @@ public:
 		else if(a[m] > target)
 			e = m-1;
 		else{
-			if(m == s || a[m] != a[m-1]){
-				ans[0] = m;
-				break;
-			}
-			else{
-				e = m-1;
-				ans[0] = m-1;
-			}
+			e = m-1;
+			ans[0] = m;
+			
 		}
 	}
 
@@ -31,16 +26,11 @@ public:
 		else if(a[m] > target)
 			e = m-1;
 		else{
-			if(m == e || a[m] != a[m+1]){
-				ans[1] = m;
-				break;
-			}
-			else{
-				s = m+1;
-				ans[1] = m+1;
+			s = m+1;
+			ans[1] = m;
 			}
 		}
-	}
+	
 	return ans; 
 }
 };
