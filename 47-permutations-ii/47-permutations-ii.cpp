@@ -16,6 +16,7 @@ public:
             if(i != pos && nums[i] == nums[pos]) continue;
             swap(nums[pos], nums[i]);
             DFS(res, nums, pos + 1);
+            
         }
     }
 };
