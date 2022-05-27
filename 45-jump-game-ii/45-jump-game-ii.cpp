@@ -1,44 +1,30 @@
 class Solution {
 public:
-    int solve(vector<int>& nums,int n, vector<int>& dp, int i){
+    int jump(vector<int>& nums) {
         
-        if(i==n-1){
-            return 0;
-        }
+        int n=nums.size();
+        vector <int> dp (n,INT_MAX);
         
-        if(i>=n){
-            return INT_MAX;
-        }
+        dp[n-1]=0;
         
-        if(dp[i]){
-            return dp[i];
-        }
-        
-        int ans= INT_MAX;
-        int jumps = nums[i];
-        
-        for(int j=1;j<=jumps;j++){
+        for(int i=n-2;i>=0;i--){
+            int jumps = nums[i];
             
-            int nextStep=i+j;
-            int furtherRecquired = solve(nums,n,dp,nextStep);
+            int min = dp[i];
             
-            if(furtherRecquired != INT_MAX){
-                ans=min(ans,furtherRecquired+1);
+            for(int j=1;j<=jumps and i+j<n;j++){
+                if(INT_MAX != dp[i+j] and dp[i+j]<min){
+                    min=dp[i+j];
+                }
             }
             
+            if(min!=INT_MAX){
+                dp[i]=min+1;
+            }
             
         }
         
-        dp[i]=ans;
-        
-        return dp[i];
-        
-    }
-    
-    int jump(vector<int>& nums) {
-        int n=nums.size();
-        vector<int> dp(n,0);
-        return solve(nums,n,dp,0);
+        return dp[0];
         
     }
 };
