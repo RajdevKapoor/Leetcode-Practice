@@ -1,17 +1,18 @@
 class Solution {
 public:
-    int numRabbits(vector<int>& a) {
+    int numRabbits(vector<int>& v) {
         
         unordered_map <int,int> mp;
         int ans=0;
+        float a,b;
         
-        for(int x: a){
+        for(int x: v){
             mp[x]++;
         }
         
         for(auto x:mp){
-            float a = x.first+1;
-            float b = x.second;
+            a = x.first+1;
+            b = x.second;
             ans+= ceil(b/a)*a;
         }
         
