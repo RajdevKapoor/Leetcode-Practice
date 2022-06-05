@@ -4,10 +4,10 @@ public:
          unordered_map<int,int>gap;
          int n=wall.size()  ;
 
-        for(int row=0;row<n;++row){
+        for(auto v:wall){
              int sum=0; //to count the prefix sum in each row
-             for(int col=0;col<wall[row].size()-1;++col){
-                 sum+=wall[row][col];
+             for(int col=0;col<v.size()-1;++col){
+                 sum+=v[col];
                  ++gap[sum]; //frequency of the gap is increased.
              } 
         }
