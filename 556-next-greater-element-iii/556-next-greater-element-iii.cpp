@@ -10,7 +10,7 @@ private:
     bool nextPermutation(string& nums) {
         if(nums.empty()) return false;
         int i=nums.size()-1;
-        while(i>=1 && nums[i]<=nums[i-1]) i--;
+        while(i>=1 && nums[i-1]>=nums[i]) i--;
         if(i==0) return false; // no next permutation, i.e. already largest
         
         int j=nums.size()-1;
