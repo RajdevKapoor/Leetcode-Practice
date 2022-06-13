@@ -16,12 +16,22 @@ public:
             return head;
         }
         
-        ListNode* shead = reverseList(head->next);
+        ListNode* curr = head;
+        ListNode* prev = NULL;
+        ListNode* f = NULL;
         
-        head->next->next=head;
-        head->next = NULL;
+           while(curr){
+               
+               f=curr->next;
+               curr->next = prev;
+               prev=curr;
+               curr=f;
+
+           }
         
-        return shead ;
+        
+        
+        return prev ;
         
         
     }
