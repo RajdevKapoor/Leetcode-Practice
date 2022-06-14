@@ -20,7 +20,7 @@ public:
             my_stack.pop();
             element->next = pptr->next;
             pptr->next = element;
-            pptr = pptr->next->next;
+            pptr = element->next;
         }
         pptr->next = NULL;
     }
