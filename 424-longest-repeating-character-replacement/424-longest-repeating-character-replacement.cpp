@@ -7,7 +7,7 @@ public:
          {
              freqLetters[s[right]]++;
              maxCount = max(maxCount, freqLetters[s[right]]);  
-             if(right - left + 1 - maxCount > k)  
+             while(right - left + 1 - maxCount > k)  
              {
                  freqLetters[s[left]]--;
                  left++;
