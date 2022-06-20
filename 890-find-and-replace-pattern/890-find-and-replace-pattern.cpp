@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool solve(string s1,string s2){
-        map<char,char> mp1,mp2;
+        unordered_map<char,char> mp1,mp2;
         if(s1.size()!=s2.size()){
             return false;
         }
