@@ -11,8 +11,10 @@ public:
         int j=0;
         for(int i=1;i<interval.size();i++)
         {
-            if(result[j][1]>=interval[i][0]) result[j][1]=max(result[j][1],interval[i][1]);
-          
+            if(result[j][1]>=interval[i][0]) 
+            {
+                result[j][1]=max(result[j][1],interval[i][1]);
+            }
             else
             {
                 j++;
