@@ -1,6 +1,14 @@
 class Solution {
 public:
     
+    bool count(vector<vector<int>>& matrix,int n,int k, int mid){
+        int c = 0;
+        for(int i = 0; i < n; i++){
+            c += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
+        }
+        return c < k;
+    }
+    
     int kthSmallest(vector<vector<int>>& matrix, int k) {
         
         int n = matrix.size();
@@ -9,12 +17,9 @@ public:
         while(low < high){
             
             int mid = low + (high - low)/2;
-            int count = 0;
-            for(int i = 0; i < n; i++){
-                count += upper_bound(matrix[i].begin(), matrix[i].end(), mid) - matrix[i].begin();
-            }
             
-            if(count < k){
+            
+            if(count(matrix,n,k,mid)){
                 low = mid + 1;
             }else{
                 high = mid;
