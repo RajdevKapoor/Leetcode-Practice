@@ -17,7 +17,7 @@ public:
             }
             
             while(i<j and sum>=target){
-                ans = min(ans,j-i+1);
+                ans = min(ans,j-i);
                 sum-=nums[i++];
             }
             
@@ -26,6 +26,6 @@ public:
         if(ans==INT_MAX){
             return 0;
         }
-        return ans-1;
+        return ans;
     }
 };
