@@ -25,21 +25,18 @@ public:
         
         if(start == end){
             return root;
-        }else{
-            int i=start;
-            for(i=start; i<=end; i++)
-            {
-                if(inorder[i] == x)
-                {
-                    break;
-                }
-            }
-            
-            root->left = helper(preorder, inorder, index, start, i-1);
-            root->right = helper(preorder, inorder, index, i+1, end);
-            return root;
         }
         
+        int i=start;
+        for(i=start; i<=end; i++){
+            if(inorder[i] == x){
+                break;
+            }
+        }
+            
+        root->left = helper(preorder, inorder, index, start, i-1);
+        root->right = helper(preorder, inorder, index, i+1, end);
+        return root;
     }
     
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
