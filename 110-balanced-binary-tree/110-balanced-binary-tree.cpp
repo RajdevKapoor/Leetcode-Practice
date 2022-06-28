@@ -4,7 +4,6 @@ public:
     int checkBalance(TreeNode* root){
         if(root == NULL)
             return 0;
-
         int leftSubTree = checkBalance(root->left);
         int rightSubTree = checkBalance(root->right);
         if(abs(leftSubTree-rightSubTree) > 1){
