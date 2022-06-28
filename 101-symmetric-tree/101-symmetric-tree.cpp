@@ -15,15 +15,15 @@ public:
     bool help(TreeNode* left,TreeNode* right){
         if(left==NULL and right==NULL){
             return true;
-        }else if((left == NULL and right != NULL) or (right == NULL and left != NULL)){
-            return false;
-        }else{
-            if(left->val != right->val){
-                return false;
-            }else{
-                return help(left->left,right->right) and help(left->right,right->left);
-            }
         }
+        if((left == NULL and right != NULL) or (right == NULL and left != NULL)){
+            return false;
+        }
+        if(left->val != right->val){
+            return false;
+         }
+        return help(left->left,right->right) and help(left->right,right->left);
+            
     }
     
     
