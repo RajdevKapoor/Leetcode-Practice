@@ -9,47 +9,19 @@
  */
 class Solution {
 public:
-    bool getRootToNodePath(TreeNode* root,TreeNode* target,vector<TreeNode*> &v){
-        if(root==NULL) return false;
-        
-        if(root==target){
-            v.push_back(root);
-            return true;
-        }
-        
-        bool left = getRootToNodePath(root->left,target,v);
-        
-        if(left){
-           v.push_back(root);
-            return true; 
-        }
-        
-        bool right = getRootToNodePath(root->right,target,v);
-        
-        if(right){
-           v.push_back(root);
-            return true; 
-        }
-        
-        return false;
-        
-    }
-    
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
-        vector<TreeNode*> findp, findq;
-        getRootToNodePath(root,p,findp);
-        getRootToNodePath(root,q,findq);
+        if(root==NULL or root==p or root==q){
+            return root;
+        }
         
-        int i=0;
+        TreeNode* l = lowestCommonAncestor(root->left,p,q);
+        TreeNode* r = lowestCommonAncestor(root->right,p,q);
         
-        reverse(findp.begin(),findp.end());
-        reverse(findq.begin(),findq.end());
+        if(l==NULL) return r;
+        if(r==NULL) return l;
         
-        while(i<min(findp.size(),findq.size()) and findp[i]==findq[i]) i++;
-        
-        return findp[i-1];
-        
+        return root;
         
     }
 };
