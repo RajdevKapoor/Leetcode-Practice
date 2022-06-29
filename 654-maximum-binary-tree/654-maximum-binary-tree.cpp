@@ -25,7 +25,8 @@ public:
         
         if(start>=end) return NULL;
         
-        int mid=maxi(nums,start,end);
+        //int mid=maxi(nums,start,end);
+        int mid = max_element(nums.begin()+start,nums.begin()+start + end-start)-nums.begin();
         
         TreeNode* root = new TreeNode(nums[mid]);
         root->left=solve(nums,start,mid);
