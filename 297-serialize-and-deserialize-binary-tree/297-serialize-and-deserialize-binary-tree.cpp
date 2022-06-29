@@ -31,8 +31,8 @@ public:
     
     string serialize(TreeNode* root) {
         
-        if(!root)
-            return "";
+        // if(!root)
+        //     return "";
         
         s="";
         preorder(root);
