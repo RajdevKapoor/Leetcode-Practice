@@ -22,10 +22,9 @@ public:
             root->left = new TreeNode(val,l,NULL); 
             root->right =new TreeNode(val,NULL,r); 
         }
-        else{
             solve(root->left,val,depth-1);
             solve(root->right,val,depth-1);
-        }
+        
         
         
     }
