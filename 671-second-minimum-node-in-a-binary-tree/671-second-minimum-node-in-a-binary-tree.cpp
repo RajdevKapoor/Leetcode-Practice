@@ -1,9 +1,9 @@
 
 class Solution {
 public:
-    int m=INT_MAX,sm=INT_MAX;
+    
     bool check=0;
-    void helper(TreeNode* root)
+    void helper(TreeNode* root,int &m,int &sm)
     {
         if(root==NULL)
             return;
@@ -14,12 +14,13 @@ public:
             sm=min(sm,root->val); 
             check=1;
         }
-        helper(root->left);
-        helper(root->right);
+        helper(root->left,m,sm);
+        helper(root->right,m,sm);
     }
     
     int findSecondMinimumValue(TreeNode* root) {
-        helper(root);
+        int m=INT_MAX,sm=INT_MAX;
+        helper(root,m,sm);
         if(sm==INT_MAX and check==0)
             return -1;
         return sm;
