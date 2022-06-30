@@ -20,7 +20,7 @@ public:
     
     int findSecondMinimumValue(TreeNode* root) {
         helper(root);
-        if(sm==INT_MAX and check==0) // edge case when second minimum value is INT_MAX
+        if(sm==INT_MAX and check==0)
             return -1;
         return sm;
     }
