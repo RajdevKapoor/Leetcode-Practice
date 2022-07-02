@@ -17,12 +17,12 @@ private:
         int leftPath  = dfs(root->left, longestPath);
         int rightPath = dfs(root->right, longestPath);
         
-        if(root->left != nullptr  && root->left->val == root->val)
+        if(root->left   && root->left->val == root->val)
             leftPath += 1;
         
         else leftPath = 0;
         
-        if(root->right != nullptr && root->right->val == root->val)
+        if(root->right  && root->right->val == root->val)
             rightPath += 1;
         
         else rightPath = 0; 
