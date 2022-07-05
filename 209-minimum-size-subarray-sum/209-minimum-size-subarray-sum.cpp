@@ -13,7 +13,8 @@ public:
         while(j<n){
             
             while(j<n and sum<target){
-                sum+=nums[j++];
+                sum+=nums[j];
+                j++;
             }
             
             while(i<j and sum>=target){
