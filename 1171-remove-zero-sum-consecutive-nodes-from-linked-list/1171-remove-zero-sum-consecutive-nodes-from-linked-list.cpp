@@ -16,15 +16,20 @@ public:
         ListNode* temp = head;
         int sum=0;
         
+        bool whileCheck = true;
         while(temp){
             sum+=temp->val;
             if(sum==0){
+                whileCheck = false;
                 flag=true;
                 return temp->next;
             }
             temp=temp->next;
         }
-        head->next=solve(head->next,flag);
+        if(whileCheck){
+            head->next=solve(head->next,flag);
+        }
+        
         return head;
     }
     
