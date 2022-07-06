@@ -1,31 +1,44 @@
 class Solution {
 public:
-    bool iscycle(vector<int>adj[],vector<int> &vis,int id){
-        if(vis[id]==1)
-            return true;
-        if(vis[id]==0){
-            vis[id]=1;
-            for(auto edge : adj[id]){
-                if(iscycle(adj,vis,edge))
+    bool checkCycle(int i, unordered_map <int,vector<int>> &graph,vector<bool>&visited, vector<bool>&currVisited){
+        
+        visited[i]=true;
+        currVisited[i]=true;
+        
+        for(auto nbr:graph[i]){
+            
+            if(visited[nbr]==false){
+                if(checkCycle(nbr,graph,visited,currVisited)){
                     return true;
+                }
+            }else{
+                if(currVisited[nbr]){
+                    return true;
+                }
             }
         }
-        vis[id] = 2;
+        
+        
+        currVisited[i]=false;
         return false;
     }
     
-    bool canFinish(int n, vector<vector<int>>& pre) {
-        vector<int>adj[n];
+    bool canFinish(int n, vector<vector<int>>& prerequisites) {
         
-        for(auto p : pre) {
-            adj[p[0]].push_back(p[1]);
+        unordered_map <int,vector<int>> graph;
+        vector<bool>visited(n, false), currVisited(n, false);
+        for(auto x: prerequisites){
+            int a = x[0];
+            int b = x[1];
+            graph[a].push_back(b);
         }
         
-        vector<int>visited(n , 0);
-        
-        for(int i = 0 ; i < n ; i++) {
-            if(iscycle(adj,visited,i)) 
-                return false;
+        for(int i=0;i<n;i++){
+            if(visited[i]==false){
+                if(checkCycle(i,graph,visited,currVisited)){
+                    return false;
+                }
+            }
         }
         return true;
     }
