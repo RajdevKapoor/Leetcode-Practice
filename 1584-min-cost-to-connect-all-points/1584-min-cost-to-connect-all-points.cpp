@@ -7,6 +7,10 @@ public:
         return parent[u]=findParent(parent[u], parent, rank);
     }
     static void unionByRank(int u, int v, vector<int> &parent, vector<int> &rank){
+        
+        // u = findParent(u, parent, rank);
+        // v = findParent(v, parent, rank);
+        
         if(rank[u]<rank[v]){
             parent[u] = v;
         }
