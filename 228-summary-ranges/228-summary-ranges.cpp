@@ -1,35 +1,37 @@
 class Solution {
 public:
     vector<string> summaryRanges(vector<int>& nums) {
+        vector<string> ans;
+        int n = nums.size();
+        if(n == 0) return ans;
+        bool flag = false;
+        string s ;
         
-        unordered_set<long long> s(nums.begin(),nums.end());
-        
-        map<long long,long long> mp;
-        
-        for(auto n:s){
-            
-            if(s.count(n-1)) continue;
-            
-            long long checNext=n;
-            while(s.count(checNext)){
-                mp[n]++;
-                checNext++;
-            }}
-            
-            vector<string> ans;
-            string str;
-            for(auto m:mp){
-                
-                str=to_string(m.first);
-                if(m.second>1){
-                    str+="->" + to_string(m.first+m.second-1);
-                }
-                ans.push_back(str);
+        for(int i=0;i<n-1;i++){
+            if(nums[i] +1 != nums[i+1] && !flag){
+                ans.push_back(to_string(nums[i]));
+                flag = false;
             }
-            
-            return ans;
-            
-        
-        
+            else if (nums[i] +1 == nums[i+1] && !flag){
+                s +=  to_string(nums[i]) + "->";
+                flag = true;
+            }
+            else if (nums[i] +1 != nums[i+1] && flag){
+                s += to_string(nums[i]);
+                flag = false;
+            }
+           if(s != "" && flag == false){
+               ans.push_back(s);
+               s = "";
+           }
+        }
+        if(flag){
+             s += to_string(nums[n-1]);
+            ans.push_back(s);
+            flag = false;
+        } else{
+            ans.push_back(to_string(nums[n-1]));
+        }
+        return ans;
     }
 };
