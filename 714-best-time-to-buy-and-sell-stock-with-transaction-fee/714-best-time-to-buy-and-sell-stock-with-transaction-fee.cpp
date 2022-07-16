@@ -30,10 +30,32 @@ public:
     }
     
     int maxProfit(vector<int>& prices,int fee) {
-        f=fee;
         
-        vector<vector<int>> dp(prices.size(),vector<int>(2,-1));
-        solve(0,prices,1,dp);
+        vector<vector<int>> dp(prices.size()+1,vector<int>(2,0));
+        int n=prices.size();
+        for(int i=n-1;i>=0;i--){
+            for(int buy=1;buy>=0;buy--){
+                
+                int profit=0;
+                
+                if(buy){
+            
+                    int op1 = -prices[i] + dp[i+1][0];
+                    int op2 = dp[i+1][1];
+                    profit=max(op1,op2);
+
+                }else{
+            
+                    int op1 = prices[i]-fee + dp[i+1][1];
+                    int op2 = dp[i+1][0];
+                    profit=max(op1,op2);
+
+                }  
+                
+                dp[i][buy]=profit;
+            }
+        }
+        
         
         return dp[0][1];
     }
