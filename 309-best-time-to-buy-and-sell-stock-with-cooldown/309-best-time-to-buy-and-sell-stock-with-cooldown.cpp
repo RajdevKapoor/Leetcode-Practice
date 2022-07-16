@@ -1,42 +1,40 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& prices) {
+    int solve(int i,vector<int>& prices,int buy,vector<vector<int>> &dp){
         
-        int n=prices.size();
+        if(i>=prices.size()) return 0;
         
-        int obsp=0, ossp=0, ocsp=0;
-        int nbsp=0, nssp=0, ncsp=0;
+        int profit=0;
         
-        obsp= ocsp - prices[0];
+        if(dp[i][buy]!=-1) return  dp[i][buy];
         
-        for(int i=1;i<n;i++){
+        if(buy){
             
-            if(ocsp - prices[i]> obsp){
-                nbsp = ocsp-prices[i];
-            }else{
-                nbsp=obsp;
-            }
+            int op1 = -prices[i] + solve(i+1,prices,0,dp);
+            int op2 = solve(i+1,prices,1,dp);
+            profit=max(op1,op2);
             
-            if(obsp+prices[i]>ossp){
-                nssp=obsp+prices[i];
-            }else{
-                nssp=ossp;
-            }
+        }else{
             
-            if(ossp>ocsp){
-                ncsp=ossp;
-            }else{
-                ncsp=ocsp;
-            }
-            
-            obsp=nbsp;
-            ossp=nssp;
-            ocsp=ncsp;
-            
+            int op1 = prices[i] + solve(i+2,prices,1,dp);
+            int op2 = solve(i+1,prices,0,dp);
+            profit=max(op1,op2);
             
         }
         
-        return ossp;
+        
+        return dp[i][buy]=profit;      
+        
         
     }
+    
+    int maxProfit(vector<int>& prices) {
+        
+        
+        vector<vector<int>> dp(prices.size(),vector<int>(2,-1));
+        solve(0,prices,1,dp);
+        
+        return dp[0][1];
+    }
+   
 };
