@@ -6,16 +6,15 @@ public:
         for(int i=0;i<word.size();i++)
         {
             mp.clear();
-            for(int j=i;j<word.size();j++)
-            {
-                if(!(word[j]=='a'||word[j]=='e'||word[j]=='i'||word[j]=='o'||word[j]=='u'))
-                {
+            for(int j=i;j<word.size();j++){
+                
+                if(!(word[j]=='a'||word[j]=='e'||word[j]=='i'||word[j]=='o'||word[j]=='u')){
                     break;
                 }
+                
                 mp[word[j]]++;
                 
-                if(mp.size()==5)
-                    cnt++; 
+                if(mp.size()==5) cnt++; 
             }
         }
         return cnt;
