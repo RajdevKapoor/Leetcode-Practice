@@ -1,27 +1,40 @@
 class Solution {
 public:
-    int longestStrChain(vector<string>& words) {
-        
-    std::sort(words.begin(), words.end(), [](const std::string& first, const std::string& second)
-	{
-        return first.size() < second.size();
-	});
-        
-        map<string,int> m;
-        int res = 0;
-        
-        for(string word:words)
-        {
-            int longest =0;
-            for(int i = 0;i<word.length();i++)
-            {
-                string sub = word.substr(0,i) + word.substr(i+1,word.length()+1);
-                longest = max(longest,m[sub]+1);   
+    static bool comp(string &a, string &b){
+        return a.size()<b.size();
+    }
+
+    bool checkPossible(string &s1, string &s2){
+
+        if(s1.size()!=s2.size()+1) return false;
+
+        int i=0, j=0;
+        while(i<s1.size()){
+            if(j<s2.size() && s1[i]==s2[j]){
+                i++;j++;
             }
-            
-            m[word] = longest;
-            res = max(res,longest);
+            else{
+                i++;
+            }
         }
-        return res;
+        return i==s1.size() && j==s2.size();
+    }
+
+    int longestStrChain(vector<string>& words) {
+
+        int n=words.size(), maxi=1;
+        vector<int> dp(n,1);
+        sort(words.begin(), words.end(), comp);
+        for(int i=1;i<n;i++){
+            for(int j=0;j<i;j++){
+
+                if(checkPossible(words[i],words[j]) && dp[j]+1>dp[i]){
+                    dp[i]=1+dp[j];
+                }
+            }
+            maxi=max(maxi,dp[i]);
+        }
+
+        return maxi;
     }
 };
