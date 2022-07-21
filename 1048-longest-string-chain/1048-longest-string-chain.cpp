@@ -28,8 +28,8 @@ public:
         for(int i=1;i<n;i++){
             for(int j=0;j<i;j++){
 
-                if(checkPossible(words[i],words[j]) && dp[j]+1>dp[i]){
-                    dp[i]=1+dp[j];
+                if(checkPossible(words[i],words[j]) ){
+                    dp[i]=max(dp[i],1+dp[j]);
                 }
             }
             maxi=max(maxi,dp[i]);
