@@ -20,7 +20,7 @@ ListNode* partition(ListNode* head, int x) {
         ListNode* h1=smallHead;
         ListNode* h2=largeHead;
         while(head){
-           int value=head->val;
+            int value=head->val;
             if(value<x){
                 smallHead->next=head;
                 smallHead=smallHead->next;
