@@ -13,7 +13,8 @@ public:
         
         if(el==0){
             zeros.insert(i);
-        }else{
+        }
+        else{
             ans[i]=-1;
             if(mp.find(el) == mp.end()){
                 mp[el] = i;
@@ -30,8 +31,8 @@ public:
                     ans[idx] = el;
                 }
             }
+          }
         }
-            }
         
         for(auto it: zeros){
             ans[it] = 1;
