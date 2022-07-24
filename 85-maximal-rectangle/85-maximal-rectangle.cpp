@@ -48,10 +48,8 @@ public:
     }
     
     int maximalRectangle(vector<vector<char>>& matrix) {
-        
-        
+          
         vector<vector<int>> mat(matrix.size(),vector<int> (matrix[0].size(),0));
-        
         
         for(int i=0;i<matrix.size();i++){
             for(int j=0;j<matrix[0].size();j++){
@@ -65,7 +63,7 @@ public:
         
         for(int i=1;i<mat.size();i++){
             for(int j=0;j<matrix[0].size();j++){
-                if(mat[i][j])mat[i][j]+=mat[i-1][j];
+                if(mat[i][j]) mat[i][j]+=mat[i-1][j];
             }
         }
         
