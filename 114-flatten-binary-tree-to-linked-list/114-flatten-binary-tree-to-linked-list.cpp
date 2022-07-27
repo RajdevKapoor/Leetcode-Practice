@@ -15,28 +15,22 @@ public:
         
         if(root==NULL) return;
         
-        stack<TreeNode*> s;
+        stack <TreeNode*> s;
         
         s.push(root);
         
         while(s.size()){
-            auto curr = s.top();
-            s.pop();
+            auto curr = s.top();s.pop();
             
-            if(curr->right){
-                s.push(curr->right);
-            }
-            if(curr->left){
-                s.push(curr->left);
-            }
+            if(curr->right) s.push(curr->right);
+            if(curr->left) s.push(curr->left);
             
             if(s.size()){
-                curr->right=s.top();
+                curr->right = s.top();
             }
             curr->left=NULL;
+            
         }
-        
-        return ;
         
     }
 };
