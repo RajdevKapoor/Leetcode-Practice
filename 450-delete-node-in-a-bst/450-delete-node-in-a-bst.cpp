@@ -13,8 +13,8 @@ class Solution {
 public:
     
     TreeNode* inordersuccessor(TreeNode* root){
-        if(root->left==NULL) return root;
-        return inordersuccessor(root->left);
+        if(root->right==NULL) return root;
+        return inordersuccessor(root->right);
     }
     
     TreeNode* deleteNode(TreeNode* root, int key) {
@@ -32,9 +32,9 @@ public:
             if(root->left==NULL) return root->right;
             else if(root->right==NULL) return root->left;
             
-            TreeNode* inSucc=inordersuccessor(root->right);
+            TreeNode* inSucc=inordersuccessor(root->left);
             root->val = inSucc->val;
-            root->right = deleteNode(root->right,inSucc->val);
+            root->left = deleteNode(root->left,inSucc->val);
         }
         return root;
     }
