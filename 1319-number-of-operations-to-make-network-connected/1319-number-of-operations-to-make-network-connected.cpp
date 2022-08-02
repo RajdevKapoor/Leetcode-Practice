@@ -28,6 +28,10 @@ public:
             graph[y].push_back(x);
         }
         int count=0;
+        
+        for(auto e:graph){
+            cout<<e.first<<" ";
+        }
         for(int i=0;i<n;i++){
             
             if(visited[i]==false){
