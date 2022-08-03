@@ -2,14 +2,14 @@ class Solution {
 public:
     bool canCross(vector<int>& stones) {
         int n=stones.size();
-        map<int,set<int>>mp;
-        set<int>st;
+        unordered_map<int,unordered_set<int>>mp;
+        unordered_set<int>st;
         for(auto it : stones)
             mp[it]=st;
         mp[stones[0]].insert(1);
         for(int i=0;i<n;i++){
             int currStone=stones[i];
-            set<int>jumps=mp[currStone];
+            unordered_set<int>jumps=mp[currStone];
             for(auto jump : jumps){
                 int pos=currStone+jump;
                 if(pos==stones[n-1])
