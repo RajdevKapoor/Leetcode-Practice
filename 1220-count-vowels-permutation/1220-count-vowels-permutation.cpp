@@ -24,10 +24,9 @@ public:
             return dp[i][prev]=ans2%mod;
         }
         if(prev=='e') {
-             int a = 0;
-            a = (a + ans1)%mod;
-            a = (a + ans3)%mod;
-            return dp[i][prev]=a%mod;
+            int a = 0;
+            a = ((a + ans1)%mod + (a + ans3)%mod)%mod;
+            return dp[i][prev]=a;
         }
         if(prev=='i') {
             int a = 0;
