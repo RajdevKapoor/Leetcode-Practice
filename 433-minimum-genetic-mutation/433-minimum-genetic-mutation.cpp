@@ -1,49 +1,51 @@
 class Solution {
 public:
-    int minMutation(string start, string end, vector<string>& bank) {
-        if(start == end)
-            return 0;
+    int minMutation(string start, string end, vector<string>& bank) 
+    {
+        unordered_map<string,int> mp,visited;
         
-        unordered_set<string> h, v;
-        for(auto s : bank)
-            h.insert(s);
+        vector<char> gene = {'A','G','T','C'};
         
-        if(h.find(end) == h.end())
-            return -1;
+        for (auto it:bank)
+        {
+            mp[it]++;
+        }
         
-
-        vector<char> GENE = {'A', 'C', 'T', 'G'};
-        
-
         queue<string> q;
         q.push(start);
-        int count = 0;
         
-        while(!q.empty()){
-            queue<string> q1;
-            while(!q.empty()){
-                string cur = q.front();
+        int moves = 0;
+        
+        while(!q.empty())
+        {
+            int size = q.size();
+            
+            for (int i=0; i<size; i++)
+            {
+                string curr = q.front();
                 q.pop();
                 
-                if(cur == end){
-                    return count;
-                }
-                
-                
-                for(int i = 0 ; i < 8 ; i++){
-                    char temp = cur[i]; // cahce
-                    for(int j = 0 ; j < 4 ; j++){
-                        cur[i] = GENE[j];
-                        if(h.find(cur) != h.end() && v.find(cur) == v.end()){
-                            q1.push(cur);
-                            v.insert(cur);
+                if (curr==end)
+                    return moves;
+            
+                for (int j=0; j<8; j++)
+                {
+                    string temp = curr;
+                    
+                    for (int k=0; k<4; k++)
+                    {
+                        temp[j]=gene[k];
+                        if (mp[temp] && !visited[temp])
+                        {
+                            q.push(temp);
+                            visited[temp]++;
                         }
-                    }
-                    cur[i] = temp; // reset
-                }         
+                    }      
+                }
             }
-            q = q1;
-            count++;
+            
+            moves++;
+            
         }
         
         return -1;
