@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool bfs(int src,vector<vector<int>>& graph,vector<int> &color){
-        color[src]=1;
+        color[src]=0;
         queue<int> q;
         q.push(src);
         
