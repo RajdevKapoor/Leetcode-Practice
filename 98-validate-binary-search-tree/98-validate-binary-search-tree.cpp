@@ -16,13 +16,16 @@ public:
         if (root == NULL) {
             return true;
         }
-        return (root->val > min) && (root->val < max) &&
+        return (root->val > min) && 
+               (root->val < max) &&
                isValidBST(root->left, min, root->val) && 
                isValidBST(root->right, root->val, max);
     }
     
     bool isValidBST(TreeNode* root) {
+        
         return isValidBST(root, LONG_MIN, LONG_MAX);
+        
     }
  
     
