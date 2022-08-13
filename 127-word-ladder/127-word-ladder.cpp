@@ -1,15 +1,17 @@
 class Solution {
 public:
     
-    int diffCount(string a, string b){
+    bool diffCount(string a, string b){
         int n=a.size();
         int diffCount=0;
         
         for(int i=0;i<n;i++){
             if(a[i]!=b[i]) diffCount++;
+            
+            if(diffCount==2) return false;
         }
         
-        return diffCount;
+        return true;
     }
     
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
@@ -23,7 +25,7 @@ public:
         bool need = true;
         for(int i=0;i<n;i++){
             for(int j=i+1;j<n;j++){
-                if(diffCount(wordList[i],wordList[j])==1){
+                if(diffCount(wordList[i],wordList[j])){
                     graph[wordList[i]].push_back(wordList[j]);
                     graph[wordList[j]].push_back(wordList[i]);
                 }
