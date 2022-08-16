@@ -31,7 +31,7 @@ public:
         return "Zero";
     }
     string numberToWords(int num) {
-        int billion=1000000000,million=1000000,thousand=1000,hundred=100,ten=10,one=1,temp=0;
+        int billion=1e9,million=1e6,thousand=1e3,hundred=1e2,ten=10,one=1,temp=0;
         string result ;
         
         int start = 0;
