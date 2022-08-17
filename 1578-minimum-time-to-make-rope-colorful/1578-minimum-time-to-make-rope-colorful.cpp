@@ -7,6 +7,9 @@ public:
         int cost=0;
 
         for(int i=0;i<n-1;i++){
+            
+            if(s[i]!=s[i+1]) continue;
+            
             if(s[i]==s[i+1]){
                 if(c[i]>c[i+1]){
                    swap(c[i],c[i+1]);
