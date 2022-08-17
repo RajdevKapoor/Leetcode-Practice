@@ -10,12 +10,12 @@ public:
             
             if(s[i]!=s[i+1]) continue;
             
-            if(s[i]==s[i+1]){
+            
                 if(c[i]>c[i+1]){
                    swap(c[i],c[i+1]);
                 }
                 cost+=c[i];
-            }
+            
         }
 
         return cost;
