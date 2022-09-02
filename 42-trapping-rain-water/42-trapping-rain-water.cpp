@@ -3,8 +3,10 @@ public:
     int trap(vector<int>& height) {
         
         int n=height.size();
+        
         if(n==0 || n==1 || n==2)
             return 0;
+        
         vector<int>left(n,0);
         vector<int>right(n,0);
         
