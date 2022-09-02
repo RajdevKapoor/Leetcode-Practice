@@ -1,39 +1,31 @@
 class Solution {
 public:
-    string mostCommonWord(string paragraph, vector<string>& banned) {
-        transform(paragraph.begin(), paragraph.end(), paragraph.begin(), ::tolower);
+   string mostCommonWord(string s, vector<string>& v) {
+        unordered_map<string, int> m;
         string temp = "";
-        unordered_map<string, int> mp;
-        for(int i = 0; i < paragraph.size(); i++)
-        {
-            if(isalpha(paragraph[i]))
-            {
-                temp += paragraph[i];
+        
+        for(int i=0; i<=s.length(); i++){
+            if(!isalpha(s[i]) && temp != ""){
+                m[temp]++;
+                temp = "";
             }
-            else if(paragraph[i] == ' ' || paragraph[i] == ',')
-            {
-                if(temp != "")
-                {
-                    mp[temp]++;
-                    temp = "";
-                }
+            else if(isalpha(s[i])){
+                temp += tolower(s[i]);
             }
         }
-        mp[temp]++;
-        temp = "";
-        for(int i = 0; i < banned.size(); i++)
-        {
-            mp[banned[i]] = 0;
+        
+        for(auto i : v){
+            m[i] = 0;
         }
-        int n = INT_MIN;
-        for(auto i : mp)
-        {
-            if(i.second > n)
-            {
-                temp = i.first;
-                n = i.second;
+        
+        int max = 0;
+        string res;
+        for(auto i: m){
+            if(i.second > max){
+                max = i.second;
+                res = i.first;
             }
         }
-        return temp;
+        return res;
     }
 };
