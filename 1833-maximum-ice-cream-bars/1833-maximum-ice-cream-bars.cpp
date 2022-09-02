@@ -12,6 +12,8 @@ public:
             if(costs[i]<=coins){
                 count++;
                 coins-=costs[i];
+            }else{
+                return count;
             }
             
         }
