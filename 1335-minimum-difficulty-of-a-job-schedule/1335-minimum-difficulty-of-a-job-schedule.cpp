@@ -19,7 +19,7 @@ public:
         }
         int temp = INT_MIN;
         int ans = INT_MAX;
-        for(int k=i; k<=jobDifficulty.size() - day - 1;k++)
+        for(int k=i; k<jobDifficulty.size() - day;k++)
         {
             
             temp = max(temp, jobDifficulty[k]);
