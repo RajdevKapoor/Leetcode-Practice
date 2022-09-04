@@ -1,20 +1,20 @@
 class MedianFinder {
-    priority_queue<long> small, large;
+    priority_queue<long> maxheap, minheap;
 public:
 
     void addNum(int num) {
-        small.push(num);
-        large.push(-small.top());
-        small.pop();
-        if (small.size() < large.size()) {
-            small.push(-large.top());
-            large.pop();
+        maxheap.push(num);
+        minheap.push(-maxheap.top());
+       maxheap.pop();
+        if (maxheap.size() < minheap.size()) {
+            maxheap.push(-minheap.top());
+            minheap.pop();
         }
     }
 
     double findMedian() {
-        return small.size() > large.size()
-               ? small.top()
-               : (small.top() - large.top()) / 2.0;
+        return (maxheap.size() > minheap.size())
+               ? maxheap.top()
+               : (maxheap.top() - minheap.top()) / 2.0;
     }
 };
