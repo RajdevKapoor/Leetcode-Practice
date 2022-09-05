@@ -24,30 +24,41 @@ public:
         }
     }
     vector <int> ans;
+    set<TreeNode*> vis;
     void getKDistNode (TreeNode* node, map <TreeNode*, TreeNode*> &mp, int cnt, int k, TreeNode* parent){
-        if (!node)
+        if (node==NULL){
             return;
+        }
+        
+            
         if (cnt == k){
             ans.push_back(node->val);
             return;
         }
-        if (node->left != parent){
+        
+        vis.insert(node);
+        
+        if (vis.count(node->left)==0){
             getKDistNode (node->left, mp, cnt+1, k, node);
         }
-        if (node->right != parent){
+        
+        if (vis.count(node->right)==0){
             getKDistNode (node->right, mp, cnt+1, k, node);
         }
-        if (mp[node] != parent){
+        
+        if (vis.count(mp[node])==0){
             getKDistNode (mp[node], mp, cnt+1, k, node);
         }
+        
         return;
     }
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
-        map <TreeNode*, TreeNode*> mp;
         
+        map <TreeNode*, TreeNode*> mp;
+        vis.insert(NULL);
         mp[root] = NULL;
         
-        dfs (root, NULL, mp);
+        dfs (root, mp[root], mp);
         
         getKDistNode (target, mp, 0, k, NULL);
         return ans;
