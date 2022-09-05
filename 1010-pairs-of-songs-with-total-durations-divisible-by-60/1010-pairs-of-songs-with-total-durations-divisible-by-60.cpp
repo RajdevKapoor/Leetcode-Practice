@@ -8,7 +8,7 @@ public:
         }
         int count = 0;
         signed long int zeroCount = 0;
-        for(int i=time.size()-1; i>=0; i--) {
+        for(int i=0; i<time.size(); i++) {
             int key = 60 - time[i];
             if(time[i] != 0) {
                 if(map.find(key) != map.end()) {
