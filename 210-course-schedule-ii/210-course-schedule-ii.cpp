@@ -1,14 +1,14 @@
 class Solution {
 public:
     
-    bool topoSort(int i, unordered_map <int,vector<int>> &graph,vector<bool> &visited,vector<bool> &currVisited,list<int> &ans){
+    bool checkCyc(int i, unordered_map <int,vector<int>> &graph,vector<bool> &visited,vector<bool> &currVisited,list<int> &ans){
         
         visited[i]=true;
         currVisited[i]=true;
         
         for(auto nbr:graph[i]){
             if(visited[nbr]==false){
-                if(topoSort(nbr,graph,visited,currVisited,ans)){
+                if(checkCyc(nbr,graph,visited,currVisited,ans)){
                     return true;
                 }
             }else{
@@ -35,7 +35,7 @@ public:
         
         for(int i=0;i<n;i++){
             if(visited[i]==false){
-                if(topoSort(i,graph,visited,currVisited,ans)){
+                if(checkCyc(i,graph,visited,currVisited,ans)){
                     return {};
                 }
             }
