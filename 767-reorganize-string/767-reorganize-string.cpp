@@ -5,6 +5,8 @@ public:
         unordered_map<char, int> m;
         int n = s.size();
         
+        if(n==1) return s;
+        
         for(char c: s){
             m[c]++;
         }
