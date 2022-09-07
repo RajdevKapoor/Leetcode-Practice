@@ -45,20 +45,18 @@ public:
                 }
             }
         }
+        trees.push_back({0,0,0});
         sort(trees.begin(),trees.end());
         int res=0;
-        int startX=0;
-        int startY=0;
-        for(auto tree: trees){
-            int treeX=tree[1];
-            int treeY=tree[2];
-            int distance=BFS(forest,startX,startY,treeX,treeY);
+        
+        for(int i=1;i<trees.size();i++){
+            
+            int distance=BFS(forest,trees[i-1][1],trees[i-1][2],trees[i][1],trees[i][2]);
             if(distance==-1){
                 return -1;
             }
             res+=distance;
-            startX=treeX;
-            startY=treeY;
+            
         }
         return res;
     }
