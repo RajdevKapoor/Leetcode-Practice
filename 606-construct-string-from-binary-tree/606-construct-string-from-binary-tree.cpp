@@ -19,23 +19,21 @@ public:
         }
         
         
-        s+=to_string(root->val);
-         if(root->left==NULL && root->right==NULL)return;
-       
+         s+=to_string(root->val);
+         if(root->left==NULL && root->right==NULL) return;
+        
+        // if(root->left){
             s+="(";
             solve(root->left,s);
             s+=")";
-        
+        //}
         
         if(root->right){
             s+="(";
             solve(root->right,s);
             s+=")";
         }
-        
-        // s+="(";
-        // solve(root->right,s);
-        // s+=")";
+
         
     }
     
