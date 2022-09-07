@@ -8,7 +8,7 @@ public:
             char c = board[i][j];
             board[i][j] = '.';
             bool res =  solve(board,word,i+1,j,pos+1,n,m) or solve(board,word,i-1,j,pos+1,n,m) or solve(board,word,i,j+1,pos+1,n,m) or solve(board,word,i,j-1,pos+1,n,m);
-            board[i][j] =c;
+            board[i][j] = c;
             
             if(res) return true;
         }
