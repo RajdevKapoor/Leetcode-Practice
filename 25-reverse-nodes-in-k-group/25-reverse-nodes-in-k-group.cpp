@@ -47,12 +47,14 @@ public:
         ListNode* curr = head;
         while(len >= k){
             for(int i = 0; i < k; i++){
-                ListNode* next = curr->next;
+                ListNode* temp = curr;
+                curr = curr->next;
+                temp->next=NULL;
                 if(!th){
-                    tt = curr;
+                    tt = temp;
                 }
-                th =  addFirst(th, curr);
-                curr = next;
+                th =  addFirst(th, temp);
+                
                 len--;
             }
             if(!oh){
