@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    void dfs(int node,vector<int>& vis,vector<int> adj[]){
+    void dfs(int node,vector<int>& vis,unordered_map<int,vector<int>> &adj){
         vis[node] = 1;
         for(auto it : adj[node]){
             if(!vis[it]){
@@ -12,7 +12,7 @@ public:
     
     int findCircleNum(vector<vector<int>>& isConnected) {
         int n =  isConnected.size();
-        vector<int> adj[n+1];
+        unordered_map<int,vector<int>> adj;
         for(int i = 0;i<n;i++){
             for(int j = 0;j<n;j++){
                 if(i!=j && isConnected[i][j]==1){
