@@ -10,29 +10,32 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        
-        if( head == NULL or head->next == NULL ){
+    
+     ListNode* addFirst(ListNode* head, ListNode* toAdd){
+        if(head == NULL){
+            head = toAdd;
+            toAdd->next = NULL;
             return head;
         }
+        toAdd->next = head;
+        head = toAdd;
+        return head;
+    }
+    
+    ListNode* reverseList(ListNode* head) {
         
-        ListNode* curr = head;
-        ListNode* prev = NULL;
-        ListNode* f = NULL;
+        ListNode* curr=head;
+        ListNode* ans=NULL;
+        while(curr){
+            
+            ListNode* temp =curr;
+            curr=curr->next;
+            temp->next=NULL;
+            ans=addFirst(ans,temp);
+            
+        }
         
-           while(curr){
-               
-               f=curr->next;
-               curr->next = prev;
-               prev=curr;
-               curr=f;
-
-           }
-        
-        
-        
-        return prev ;
-        
+        return ans;
         
     }
 };
