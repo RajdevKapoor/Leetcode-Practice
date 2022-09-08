@@ -51,10 +51,9 @@ public:
                 if(!th){
                     tt = curr;
                 }
-                th = addFirst(th, curr);
+                th =  addFirst(th, curr);
                 curr = next;
                 len--;
-                
             }
             if(!oh){
                 oh = th;
