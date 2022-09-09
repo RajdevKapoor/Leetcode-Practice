@@ -8,7 +8,7 @@ public:
             dp[i] = INT_MAX;
             
             for(int c: coins ){
-                if(i-c>=0 and dp[i-c]!=INT_MAX ){
+                if(i>=c and dp[i-c]!=INT_MAX ){
                     dp[i]=min(dp[i],dp[i-c]+1);
                 }
             }
