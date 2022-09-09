@@ -6,8 +6,8 @@ public:
         for(auto i : nums) ++counts[i];
         for(auto & i : counts) {
             max_k.push(i.second);
-            // Size of the min heap is maintained at equal to or below k
-            while(max_k.size() > k) max_k.pop();
+            
+            if(max_k.size() > k) max_k.pop();
         }
         vector<int> res;
         for(auto & i : counts) {
