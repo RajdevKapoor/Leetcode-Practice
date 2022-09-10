@@ -3,25 +3,26 @@ public:
     bool canJump(vector<int>& nums) {
         
         int n=nums.size();
-        
-        vector<bool> dp(n,false);
+        vector<int> dp(n,false);
         
         dp[n-1]=true;
         
-        int i=n-2;
-        
-        while(i>=0){
+        for(int i=n-2;i>=0;i--){
+            
+            int jumps=nums[i];
             
             
-            for(int j=0;j<=nums[i] && i+j<n;j++){
-                int iCanGoTo = j+nums[i];                
-                 if(dp[i+j]==true) 
-                {
-                    dp[i]=true; 
+            for(int j=0;j<=jumps;j++){
+                
+                
+                if(i+j<n and dp[i+j]==true){
+                    dp[i]=true;
                     break;
-                }               
+                }
+                
             }
-            i--;
+            
+            
         }
         
         return dp[0];
