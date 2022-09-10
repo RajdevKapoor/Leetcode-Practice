@@ -25,34 +25,72 @@ public:
         return newNode;
     }
     
+    int len(ListNode* l){
+        
+        int count=0;
+        
+        while(l){
+            l=l->next;
+            count++;
+        }
+        
+        return count;
+        
+    }
+    
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         
         ListNode *ptr1 = l1, *ptr2 = l2;
         
-        while(ptr1 or ptr2){
+//         while(ptr1 or ptr2){
             
             
-            if(ptr1 == NULL)
-            {
-                ListNode *newNode = new ListNode(0);
-                newNode->next = l1;
-                l1 = newNode;
+//             if(ptr1 == NULL)
+//             {
+//                 ListNode *newNode = new ListNode(0);
+//                 newNode->next = l1;
+//                 l1 = newNode;
                 
-                ptr2 = ptr2->next;
-            }
-            else if(ptr2 == NULL)
-            {
-                ListNode *newNode = new ListNode(0);
-                newNode->next = l2;
-                l2 = newNode;
+//                 ptr2 = ptr2->next;
+//             }
+//             else if(ptr2 == NULL)
+//             {
+//                 ListNode *newNode = new ListNode(0);
+//                 newNode->next = l2;
+//                 l2 = newNode;
                 
-                ptr1 = ptr1->next;
+//                 ptr1 = ptr1->next;
+//             }
+//             else
+//             {
+//                 ptr1 = ptr1->next;
+//                 ptr2 = ptr2->next;
+//             }
+//         }
+        
+        int len1 = len(l1);
+        int len2 = len(l2);
+        
+        if(len1>len2){
+            int k = len1-len2;
+            
+            while(k--){
+                ListNode *temp = new ListNode(0);
+                temp->next = l2;
+                l2=temp;
             }
-            else
-            {
-                ptr1 = ptr1->next;
-                ptr2 = ptr2->next;
+            
+        }
+        
+        if(len1<len2){
+            int k= -len1+len2;
+            
+            while(k--){
+                ListNode *temp = new ListNode(0);
+                temp->next = l1;
+                l1=temp;
             }
+            
         }
         
         int carry = 0;
