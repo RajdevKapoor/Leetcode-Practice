@@ -10,6 +10,8 @@ public:
         
         for(int i=0 ; i<size-1 ; i++){
             
+            if(i>0 and nums[i]==nums[i-1]) continue;
+            
             int a=i+1,b=size-1;
             
             int sum=0-nums[i];
@@ -28,7 +30,7 @@ public:
                 else if(nums[a]+nums[b]>sum) b--;
                 else a++;
             }
-            while((i<size-1)&&(nums[i+1]==nums[i])) i++;
+            //while((i<size-1)&&(nums[i+1]==nums[i])) i++;
         }
         return ans;
     }
