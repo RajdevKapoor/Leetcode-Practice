@@ -19,11 +19,11 @@ public:
                 if(nums[a]+nums[b]==sum){
                     
                     ans.push_back({nums[i],nums[a],nums[b]});
-
-                    while(a<b && nums[a+1]==nums[a]) a++;
-                    while(b>a && nums[b-1]==nums[b]) b--;
+                    a++;b--;
+                    while(a<b && nums[a-1]==nums[a]) a++;
+                    while(b>a && nums[b+1]==nums[b]) b--;
                     
-                    a++; b--;
+                    //a++; b--;
                 }
                 else if(nums[a]+nums[b]>sum) b--;
                 else a++;
