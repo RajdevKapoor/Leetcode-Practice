@@ -7,7 +7,7 @@ public:
     }
     
     void DFS(vector<vector<int>>& res, vector<int>& nums, int pos){
-        if(pos == nums.size() - 1){
+        if(pos == nums.size() ){
             res.push_back(nums);
             return;
         }
