@@ -4,7 +4,7 @@ public:
         int n = candies.size();
         long long cnt = 0;
         for(int i=0 ; i<n ; i++) {
-            cnt += 1ll*(candies[i]/mid);
+            cnt += (long long)(candies[i]/mid);
         }
         return cnt>=k;
     }
