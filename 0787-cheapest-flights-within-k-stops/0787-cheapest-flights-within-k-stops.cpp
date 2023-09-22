@@ -30,10 +30,10 @@ public:
                 continue;
             }
             
-            for(auto i: adj[node])
+            for(auto nbr: adj[node])
             {
-                int adjNode=i.first;
-                int weight=i.second;
+                int adjNode=nbr.first;
+                int weight=nbr.second;
 
                 if(cost+weight < dist[adjNode] && stops<=k)
                 {
