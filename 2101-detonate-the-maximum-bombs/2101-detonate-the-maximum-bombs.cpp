@@ -5,13 +5,16 @@ private:
     }
     
     int bfs(unordered_map<int, vector<int>>& graph, int i, int n){
-        queue<int> q;
-        q.push(i);
         vector<bool> visited(n, false);
         visited[i] = true;
+        
+        queue<int> q;
+        q.push(i);
+        
         int count = 0;
         while(!q.empty()){
-            int curr = q.front(); q.pop();
+            int curr = q.front(); 
+            q.pop();
             count++;
             for(int neigh: graph[curr]){
                 if(!visited[neigh]){
