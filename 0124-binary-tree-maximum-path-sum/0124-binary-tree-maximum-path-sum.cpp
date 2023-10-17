@@ -26,7 +26,7 @@ public:
         
         ans = max(ans,max(op1,op2));
         
-        return max(l,r) + root->val;
+        return op2;
         
     }
     
