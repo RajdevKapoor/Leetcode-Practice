@@ -15,7 +15,6 @@ public:
         
         int sum=0;
         
-        vector<int> levelNode;
      queue<TreeNode*> q;
         
         q.push(root);
@@ -23,14 +22,14 @@ public:
         while(q.size()){
             
             int sz  = q.size();
-            levelNode ={};
+            sum=0;
             
             for(int i=0;i<sz;i++){
                 
                 auto f = q.front();
                 q.pop();
                 
-                levelNode.push_back(f->val);
+                sum+=(f->val);
                 
                 if(f->left){
                     q.push(f->left);
@@ -43,9 +42,7 @@ public:
             }
             
         }
-          for(auto v:levelNode){
-                sum+=v;
-            }
+          
        return sum; 
     }
 };
