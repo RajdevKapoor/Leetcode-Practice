@@ -1,28 +1,27 @@
 class Solution {
 public:
     
-    bool solve(int i, vector<vector<int>>& prerequisites, list<int> &ans, 
+    bool solve(int i, list<int> &ans, 
                vector<bool> &visited,vector<bool> &currVisited,unordered_map<int,vector<int>> &g){
+        
         visited[i] = true;
         currVisited[i] = true;
         
-        
         for(auto nbr: g[i]){
             if(visited[nbr]==false){
-                if(solve(nbr,prerequisites,ans,visited,currVisited,g)){
-                    return true;
+                if(solve(nbr,ans,visited,currVisited,g)==false){
+                    return false;
                 }
             }else{
                 if(currVisited[nbr]==true){
-                    return true;
+                    return false;
                 }
             }
-            
         }
         
         ans.push_front(i);
         currVisited[i] = false;
-        return false;
+        return true;
     }
     
     
@@ -41,7 +40,7 @@ public:
         
         for(int i=0;i<numCourses;i++){
             if(visited[i]==false){
-                if(solve(i,prerequisites,ans,visited,currVisited,g)){
+                if(solve(i,ans,visited,currVisited,g)==false){
                     return {};
                 }
                 
