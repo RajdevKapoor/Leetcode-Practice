@@ -1,35 +1,42 @@
 class Solution {
 public:
     string minRemoveToMakeValid(string s) {
-        int n = s.length();
-        unordered_set<int> indices;
-        stack<pair<char,int>> st;
+        
+        int n=s.length();
+        set<int> toSkip;
+        stack<int> st;
         
         for(int i=0;i<n;i++){
-            if(s[i]==')' && st.empty()){
-                indices.insert(i);
+            
+            if(s[i]==')'){
+                
+                if(st.empty()){
+                    toSkip.insert(i);
+                }else{
+                    st.pop();
+                }
+                
+            }else if(s[i]=='('){
+                st.push(i);
             }
-            else if(s[i]==')' && !st.empty()){
-                st.pop();
-            }
-            else if(s[i]=='('){
-                st.push(make_pair(s[i],i));
-            }
+            
         }
         
-        while(!st.empty()){
-            indices.insert(st.top().second);
+        while(st.size()){
+            toSkip.insert(st.top());
             st.pop();
         }
         
-        string x="";
+        string ans="";
+        
         for(int i=0;i<n;i++){
-            if(indices.find(i)==indices.end()){
-                x+= s[i];
+            if(toSkip.count(i)){
+                continue;
             }
+            ans+=s[i];
         }
-
-        return x;
+        
+        return ans;
         
     }
 };
