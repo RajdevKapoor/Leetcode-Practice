@@ -1,8 +1,6 @@
 class Solution {
 public:
     int maximumSwap(int n) {
-        vector<int> ngr;
-        stack<int> s;
         vector<int> num;
         while(n!=0) {
             num.push_back(n%10);
