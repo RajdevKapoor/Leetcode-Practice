@@ -4,7 +4,9 @@ public:
         
         if(word.size()==pos) return true;
         
-        if(i>=0 and i<n and j>=0 and j<m and word[pos]==board[i][j]){
+        if(i<0 or i>=n or j<0 or j>=m or word[pos]!=board[i][j]){
+           return false; 
+        }
             char c = board[i][j];
             board[i][j] = '.';
             bool res1 = solve(board,word,i+1,j,pos+1,n,m); 
@@ -13,10 +15,10 @@ public:
             bool res4 = solve(board,word,i,j-1,pos+1,n,m);
             board[i][j] = c;
             
-            if(res1 or res2 or res3 or res4) return true;
-        }
+    
         
-        return false;
+        
+        return res1 or res2 or res3 or res4;
         
         
     }
