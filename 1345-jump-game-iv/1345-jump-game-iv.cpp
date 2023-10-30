@@ -16,13 +16,11 @@ public:
         int ans = 0;
         queue<int> q;
         q.push(0);
-        
         while(q.size()){
             ans++;
             int sz = q.size();
             
             for(int i=0;i<sz;i++){
-                
                 auto parent = q.front(); q.pop();
                 
                 if (parent - 1 >= 0 and mp.find(arr[parent - 1]) != mp.end()) {
@@ -38,10 +36,10 @@ public:
                 
                 if (mp.find(arr[parent]) != mp.end()) {
                     for (auto k : mp[arr[parent]]) {
-                        if (k != parent) {
+                        
                             if (k == arr.size() - 1) return ans;
                             q.push(k);
-                        }
+                        
                     }
                 }
                 
