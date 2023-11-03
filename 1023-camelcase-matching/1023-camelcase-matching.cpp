@@ -15,10 +15,10 @@ public:
                     else{
                         j++;
                     }
-                else{
+                
                     if(s[i] == t[j])
                         j++;
-                }
+                
             }
         }
         return j >= t.length();
