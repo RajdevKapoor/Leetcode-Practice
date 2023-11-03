@@ -46,21 +46,22 @@ public:
                     TreeNode* f = q.front();
                     q.pop();
                     
+                    visited[f] = true;
+                    
                     if(f->left == NULL && f->right == NULL && f!=leafNode[i]) ans++;
                     
                     if(f->left && !visited.count(f->left))
                     {
-                        visited[f->left] = true;
                         q.push(f->left);
                     }
                     if(f->right && !visited.count(f->right))
                     {
-                        visited[f->right] = true;
+                       
                         q.push(f->right);
                     }
                     if(m[f]!= NULL && !visited.count(m[f]))
                     {
-                        visited[m[f]] = true;
+                      
                         q.push(m[f]);
                     }
                 }
