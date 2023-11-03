@@ -8,59 +8,74 @@
  * };
  */
 class Solution {
+private:
+    map<TreeNode* ,TreeNode* > parentOf;
 public:
-    map <TreeNode*, TreeNode*> mp;
-    void dfs (TreeNode* root, TreeNode* parent){
-        if (!root)
-            return;
+    
+    void getParent(TreeNode* root){
+        if(root==NULL) return;
         
-        if (root->left){
-            mp[root->left] = root;
-            dfs (root->left, root);
+        if(root->left){
+            parentOf[root->left]=root;
+            getParent(root->left);
         }
         
-        if (root->right){
-            mp[root->right] = root;
-            dfs (root->right, root);
+        if(root->right){
+            parentOf[root->right]=root;
+            getParent(root->right);
         }
+        
     }
-    vector <int> ans;
-    set<TreeNode*> vis;
-    void getKDistNode (TreeNode* node, int cnt, int k){
-        if (node==NULL){
-            return;
-        }
-        
-            
-        if (cnt == k){
-            ans.push_back(node->val);
-            return;
-        }
-        
-        vis.insert(node);
-        
-        if (vis.count(node->left)==0){
-            getKDistNode (node->left, cnt+1, k);
-        }
-        
-        if (vis.count(node->right)==0){
-            getKDistNode (node->right,  cnt+1, k);
-        }
-        
-        if (vis.count(mp[node])==0){
-            getKDistNode (mp[node], cnt+1, k);
-        }
-        
-        return;
-    }
+    
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
+        parentOf[root]=NULL;
+        getParent(root);
         
-        vis.insert(NULL);
-        mp[root] = NULL;
+        set<TreeNode*> vis;
         
-        dfs (root, mp[root]);
+        queue<pair<TreeNode*,int>> q;
         
-        getKDistNode (target, 0, k);
+        vector<int> ans;
+        
+        q.push({target,0});
+        vis.insert(target);
+        
+        while(q.size()){
+            
+            int sz = q.size();
+            
+            for(int i=0;i<sz;i++){
+                
+                auto f = q.front(); q.pop();
+                
+                auto node = f.first;
+                auto level = f.second;
+                
+                if(level==k){
+                    ans.push_back(node->val);
+                }
+                vis.insert(node);
+                //left
+                if(level>k){
+                    continue;
+                }
+                
+                if(node->left and vis.count(node->left)==0){
+                    q.push({node->left,level+1});
+                }
+                
+                if(node->right and vis.count(node->right)==0){
+                    q.push({node->right,level+1});
+                }
+                
+                if(parentOf[node] and vis.count(parentOf[node])==0){
+                    q.push({parentOf[node],level+1});
+                }
+                
+            }
+            
+        }
+        
         return ans;
     }
 };
