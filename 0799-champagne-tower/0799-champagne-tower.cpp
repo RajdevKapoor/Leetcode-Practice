@@ -17,19 +17,8 @@ public:
             return t[row][glass];
         }
         
-        double left = (solve(poured, row - 1, glass - 1) - 1) / 2;
-
-        if(left < 0)
-        {
-            left = 0;
-        }
-        
-        double right = (solve(poured, row - 1, glass) - 1) / 2;
-
-        if(right < 0)
-        {
-            right = 0;
-        }
+        double left = max(0.00,(solve(poured, row - 1, glass - 1) - 1) / 2);
+        double right = max(0.00,(solve(poured, row - 1, glass) - 1) / 2);
         
         double total = left + right;
         
