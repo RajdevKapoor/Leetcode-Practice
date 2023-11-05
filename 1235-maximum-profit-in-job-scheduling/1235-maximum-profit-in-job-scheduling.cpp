@@ -1,8 +1,8 @@
 class Solution {
 public:
-    long int getNext(vector<vector<int>>&jobs,int low,int target){
+     int getNext(vector<vector<int>>&jobs,int low,int target){
         int high = jobs.size()-1;
-       long int res=high+2;
+        int res=high+2;
         while(low<=high){
             int mid= low+(high-low)/2;
             if(jobs[mid][0]>=target){
