@@ -12,6 +12,7 @@ public:
             else
              low= mid+1;
         }
+            
         return res;
     }
     int solve(vector<vector<int>>&jobs,int idx,vector<int>&dp){
