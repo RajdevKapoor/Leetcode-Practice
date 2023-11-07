@@ -23,7 +23,6 @@ private:
                 }  
             }
         }
-        
         return count;
     }
 public:
@@ -31,10 +30,9 @@ public:
         int n = bombs.size();
         unordered_map<int, vector<int>> graph;
         for(int i = 0; i < n; i++){
-            for(int j = i; j < n; j++){
-                
-                const auto& lhs = bombs[i];
-                const auto& rhs = bombs[j];
+            for(int j = i+1; j < n; j++){
+                auto lhs = bombs[i];
+                auto rhs = bombs[j];
                 double dist = get_dist(lhs, rhs);
                 
                 if(dist <= lhs[2]){
