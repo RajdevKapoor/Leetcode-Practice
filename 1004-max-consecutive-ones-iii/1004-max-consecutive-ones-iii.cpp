@@ -7,15 +7,12 @@ public:
         int maxlen=0;
         while(right<nums.size())
         {
-            if(nums[right]==0)
-                count+=1;
+            if(nums[right]==0) count++;
             while(count>k)
             {
-                if(nums[left]==0)
-                    count-=1;
-                left+=1;
+                if(nums[left]==0) count--;
+                left++;
             }
-            
             maxlen=max(maxlen,right-left+1);
             right+=1;
         }
