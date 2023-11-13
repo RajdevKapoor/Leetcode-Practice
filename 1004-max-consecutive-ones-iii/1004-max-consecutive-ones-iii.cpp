@@ -15,11 +15,9 @@ public:
                     count-=1;
                 left+=1;
             }
-            if(count<=k)
-            {
-                maxlen=max(maxlen,right-left+1);
-                right+=1;
-            }
+            
+            maxlen=max(maxlen,right-left+1);
+            right+=1;
         }
         return maxlen;
     }
